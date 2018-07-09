@@ -7,6 +7,13 @@
  * Website: http://themes.3rdwavemedia.com/
 */
 /* ======= Base ======= */
+.g-recaptcha{
+  padding-bottom: 10px;
+}
+.container {
+  padding-top: 20px;
+}
+
 body {
   font-family: 'Lato', arial, sans-serif;
   color: #434343;

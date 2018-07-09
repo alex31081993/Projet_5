@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>{% block title %}Responsive Portfolio Template for Developers{% endblock %}</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive HTML5 Website Landing Page for Developers">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet'
+          type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     {% block stylesheets %}
-        <title>Responsive Portfolio Template for Developers</title>
-        <!-- Meta -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Responsive HTML5 Website Landing Page for Developers">
-        <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-        <link rel="shortcut icon" href="favicon.ico">
-        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet'
-              type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <!-- Global CSS -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
         <!-- Plugins CSS -->
@@ -27,16 +27,18 @@
 
         <!-- Theme CSS -->
         <link id="theme-style" rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    {% endblock %}
+    {% block javascriptHead %}
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         <![endif]-->
-
     {% endblock %}
 </head>
 <body>
-{% block body %}
+{% block header %}
     <!-- ******HEADER****** -->
     <header class="header">
         <div class="container">
@@ -52,10 +54,12 @@
                     <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>
                 </ul>
             </div><!--//profile-->
-            <a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i
+            <a class="btn btn-cta-primary pull-right" href={{ path('contact') }} target="_blank"><i
                         class="fa fa-paper-plane"></i> Contact Me</a>
         </div><!--//container-->
     </header><!--//header-->
+{% endblock %}
+{% block body %}
 
     <div class="container sections-wrapper">
         <div class="row">
@@ -523,7 +527,8 @@
             </div><!--//secondary-->
         </div><!--//row-->
     </div><!--//masonry-->
-
+{% endblock %}
+{% block footer %}
           <!-- ******FOOTER****** -->
     <footer class="footer">
         <div class="container text-center">
