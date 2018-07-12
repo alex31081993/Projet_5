@@ -7,6 +7,9 @@
  * Website: http://themes.3rdwavemedia.com/
 */
 /* ======= Base ======= */
+a {
+  margin-right: 10px;
+}
 .g-recaptcha{
   padding-bottom: 10px;
 }

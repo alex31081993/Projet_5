@@ -54,8 +54,16 @@
                     <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>
                 </ul>
             </div><!--//profile-->
-            <a class="btn btn-cta-primary pull-right" href={{ path('contact') }} target="_blank"><i
+            <a class="btn btn-cta-primary pull-right" href={{ path('contact') }}><i
+                        class="glyphicon glyphicon-edit"></i> Ajouter un post</a>
+            <a class="btn btn-cta-primary pull-right" href={{ path('contact') }}><i
                         class="fa fa-paper-plane"></i> Contact Me</a>
+            <a class="btn btn-cta-primary pull-right" href={{ path('index') }} ><i
+                        class="glyphicon glyphicon-user"></i> Blog</a>
+            <a class="btn btn-cta-primary pull-right" href={{ path('index') }} ><i
+                        class="glyphicon glyphicon-exclamation-sign"></i> Admin</a>
+            <a class="btn btn-cta-primary pull-right" href={{ path('index') }} ><i
+                        class="glyphicon glyphicon-home"></i> Accueil</a>
         </div><!--//container-->
     </header><!--//header-->
 {% endblock %}
