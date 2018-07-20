@@ -12,7 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AddPostController extends Controller
 {
     /**
-     * @Route("/post", name="add_post")
+     * @Route("/post", name="post")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request)
     {
