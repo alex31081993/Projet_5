@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="well well-sm">
+
+
+                    {% for article in listArticles %}
+                    <a href="index.php?action=post&amp;id=<?= $post->getId() ?>">
+                        <h2 class="post-title">
+                            <li>{{ article.titre }}</li>
+                        </h2>
+                        <h3 class="post-subtitle">
+                            <li>{{ article.chapo }}</li>
+                        </h3>
+                        {% endfor %}
+                    </a>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
