@@ -21,7 +21,7 @@ class ViewPostsController extends Controller
         $listArticles = $repository->findAll();
 
             return $this->render('view_posts/index.html.twig', array(
-                'listeArticles' => $listArticles
+                'listArticles' => $listArticles
             ));
     }
 }
