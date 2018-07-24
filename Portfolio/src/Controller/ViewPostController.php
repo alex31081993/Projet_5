@@ -28,6 +28,12 @@ class ViewPostController extends Controller
         ));
 
     }
+
+    /**
+     * @Route("/post/{id}", name="view_post")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function addComment(Request $request)
     {
         $comment = new comment();
@@ -48,7 +54,7 @@ class ViewPostController extends Controller
         }
 
         return $this->render('view_post/index.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 }
