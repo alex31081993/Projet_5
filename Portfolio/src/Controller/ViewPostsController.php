@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ViewPostsController extends Controller
 {
     /**
-     * @Route("/view/posts", name="view_posts")
+     * @Route("/posts", name="posts")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showPosts()

@@ -21,30 +21,37 @@ class ViewPostController extends Controller
      */
     public function showPost(Request $request, $id)
     {
-        $repository = $this->getDoctrine()
+        $post = $this->getDoctrine()
             ->getRepository(AddPost::class)
             ->find($id);
 
-
         $comment = new comment();
+        $comment->setCategory($post);
+        $ids = $comment->getCategory();
+
+        $comments = $this->getDoctrine()
+            ->getRepository(Comment::class)
+            ->findBy(array('category' => $ids));
+
 
         $form = $this->createFormBuilder($comment)
             ->add('nom', TextType::class)
             ->add('content', TextareaType::class)
             ->getForm();
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
+            $em->persist($post);
             $em->flush();
 
         }
         return $this->render('view_post/index.html.twig', array(
             'form' => $form->createView(),
-            'repository' => $repository
+            'post' => $post,
+            'comments' => $comments
         ));
     }
 }

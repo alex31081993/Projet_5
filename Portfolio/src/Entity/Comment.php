@@ -26,6 +26,12 @@ class Comment
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AddPost", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId()
     {
         return $this->id;
@@ -51,6 +57,18 @@ class Comment
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getCategory(): ?AddPost
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?AddPost $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

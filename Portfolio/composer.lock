@@ -1854,7 +1854,7 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
@@ -5674,7 +5674,7 @@
         },
         {
             "name": "symfony/web-server-bundle",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-server-bundle.git",
