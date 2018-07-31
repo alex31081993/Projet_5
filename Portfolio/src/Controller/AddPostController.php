@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\AddPost;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,9 +15,10 @@ class AddPostController extends Controller
     /**
      * @Route("/post", name="post")
      * @param Request $request
+     * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, EntityManagerInterface $em)
     {
         $post = new AddPost();
 
@@ -30,7 +32,6 @@ class AddPostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post = $form->getData();
-            $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
 

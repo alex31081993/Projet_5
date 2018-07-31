@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\AddPost;
 use App\Entity\Comment;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +18,10 @@ class ViewPostController extends Controller
      * @Route("/post/{id}", name="view_post")
      * @param Request $request
      * @param $id
+     * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showPost(Request $request, $id)
+    public function showPost(Request $request, $id, EntityManagerInterface $em)
     {
         $post = $this->getDoctrine()
             ->getRepository(AddPost::class)
@@ -42,7 +44,6 @@ class ViewPostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
-            $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->persist($post);
             $em->flush();
