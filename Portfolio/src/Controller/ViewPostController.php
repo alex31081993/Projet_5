@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Entity\AddPost;
 use App\Entity\Comment;
+use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,25 +26,18 @@ class ViewPostController extends Controller
             ->getRepository(AddPost::class)
             ->find($id);
 
-        $comment = new comment();
-        $comment->setCategory($post);
-        $ids = $comment->getCategory();
 
-        $comments = $this->getDoctrine()
-            ->getRepository(Comment::class)
-            ->findBy(array('category' => $ids));
+        $comments = $post->getComments();
 
 
-        $form = $this->createFormBuilder($comment)
-            ->add('nom', TextType::class)
-            ->add('content', TextareaType::class)
-            ->getForm();
+        $form = $this->createForm(CommentType::class, new Comment());
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
+            $comment->setCategory($post);
             $em->persist($comment);
-            $em->persist($post);
             $em->flush();
 
         }

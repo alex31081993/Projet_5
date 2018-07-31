@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\AddPost;
+use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,11 +21,8 @@ class AddPostController extends Controller
     {
         $post = new AddPost();
 
-        $form = $this->createFormBuilder($post)
-            ->add('titre', TextType::class)
-            ->add('chapo', TextType::class)
-            ->add('content', TextareaType::class)
-            ->getForm();
+        $form = $this->createForm(PostType::class, $post);
+
 
         $form->handleRequest($request);
 
