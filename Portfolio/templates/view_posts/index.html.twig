@@ -8,7 +8,7 @@
 
 
                     {% for article in listArticles %}
-                    <a href={{ path('post'['id'] ) }}>
+                    <a href={{ path('post', {'id' : article.id} ) }}>
                         <h2 class="post-title">
                             <li>{{ article.titre }}</li>
                         </h2>
