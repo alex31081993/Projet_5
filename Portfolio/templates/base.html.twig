@@ -53,19 +53,22 @@
                     <li><a href="#"><i class="fa fa-github-alt"></i></a></li>
                     <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>
                 </ul>
+
             </div><!--//profile-->
-            <a class="btn btn-cta-primary pull-right" href={{ path('post') }}><i
+            {% if is_granted('ROLE_USER') %}
+            <a class="btn btn-cta-primary pull-right" href={{ path('addPost') }}><i
                         class="glyphicon glyphicon-edit"></i> Ajouter un post</a>
+            <a class="btn btn-cta-primary pull-right" href={{ path('login') }} ><i
+                        class="glyphicon glyphicon-exclamation-sign"></i> Admin</a>
+            {% endif %}
             <a class="btn btn-cta-primary pull-right" href={{ path('contact') }}><i
                         class="fa fa-paper-plane"></i> Contact Me</a>
             <a class="btn btn-cta-primary pull-right" href={{ path('posts') }} ><i
                         class="glyphicon glyphicon-user"></i> Blog</a>
-            <a class="btn btn-cta-primary pull-right" href={{ path('index') }} ><i
-                        class="glyphicon glyphicon-exclamation-sign"></i> Admin</a>
+
             <a class="btn btn-cta-primary pull-right" href={{ path('index') }} ><i
                         class="glyphicon glyphicon-home"></i> Accueil</a>
         </div><!--//container-->
-
     </header><!--//header-->
 {% endblock %}
 {% block body %}

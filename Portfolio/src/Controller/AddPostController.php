@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AddPostController extends Controller
 {
     /**
-     * @Route("/post", name="post")
+     * @Route("/addPost", name="addPost")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\Response

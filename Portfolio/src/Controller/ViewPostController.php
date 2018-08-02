@@ -14,7 +14,7 @@ class ViewPostController extends Controller
 {
 
     /**
-     * @Route("/post/{id}", name="view_post")
+     * @Route("/post/{id}", name="post")
      * @param Request $request
      * @param $id
      * @param EntityManagerInterface $em
