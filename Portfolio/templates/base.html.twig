@@ -58,9 +58,12 @@
             {% if is_granted('ROLE_USER') %}
             <a class="btn btn-cta-primary pull-right" href={{ path('addPost') }}><i
                         class="glyphicon glyphicon-edit"></i> Ajouter un post</a>
+                <a class="btn btn-cta-primary pull-right" href={{ path('logout') }} ><i
+                            class="glyphicon glyphicon-exclamation-sign"></i> Logout</a>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
             <a class="btn btn-cta-primary pull-right" href={{ path('login') }} ><i
                         class="glyphicon glyphicon-exclamation-sign"></i> Admin</a>
-            {% endif %}
             <a class="btn btn-cta-primary pull-right" href={{ path('contact') }}><i
                         class="fa fa-paper-plane"></i> Contact Me</a>
             <a class="btn btn-cta-primary pull-right" href={{ path('posts') }} ><i
@@ -68,6 +71,7 @@
 
             <a class="btn btn-cta-primary pull-right" href={{ path('index') }} ><i
                         class="glyphicon glyphicon-home"></i> Accueil</a>
+            {% endif %}
         </div><!--//container-->
     </header><!--//header-->
 {% endblock %}

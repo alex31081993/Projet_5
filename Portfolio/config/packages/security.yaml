@@ -17,13 +17,14 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            pattern:    ^/
-            http_basic: ~
             provider: our_db_provider
             anonymous: true
             form_login:
                 login_path: login
                 check_path: login
+            logout:
+                path: /logout
+                target: /
 
 
             # activate different ways to authenticate
@@ -38,4 +39,4 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/addPost, roles: ROLE_USER }
+        - { path: ^/addPost, roles: ROLE_USER }
