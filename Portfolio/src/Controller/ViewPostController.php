@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\AddPost;
+use App\Entity\Post;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,7 +23,7 @@ class ViewPostController extends Controller
     public function showPost(Request $request, $id, EntityManagerInterface $em)
     {
         $post = $this->getDoctrine()
-            ->getRepository(AddPost::class)
+            ->getRepository(Post::class)
             ->find($id);
 
 

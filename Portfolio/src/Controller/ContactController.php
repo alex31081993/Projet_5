@@ -18,6 +18,7 @@ class ContactController extends Controller
      * @Route("/contact", name="contact")
      * @param Request $request
      * @param EntityManagerInterface $em
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request, EntityManagerInterface $em)

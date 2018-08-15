@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\AddPost;
+use App\Entity\Post;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -17,7 +17,7 @@ class ViewPostsController extends Controller
 
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository(AddPost::class);
+            ->getRepository(Post::class);
         $listArticles = $repository->findAll();
 
             return $this->render('view_posts/index.html.twig', array(

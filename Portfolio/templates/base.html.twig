@@ -42,7 +42,8 @@
     <!-- ******HEADER****** -->
     <header class="header">
         <div class="container">
-            <img class="profile-image img-responsive pull-left" src="{{ asset('assets/images/profile.png') }}" alt="Gressier Alexis"/>
+            <img class="profile-image img-responsive pull-left" src="{{ asset('assets/images/profile.png') }}"
+                 alt="Gressier Alexis"/>
             <div class="profile-content pull-left">
                 <h1 class="name">Gressier Alexis</h1>
                 <h2 class="desc">Web App Developer</h2>
@@ -56,21 +57,23 @@
 
             </div><!--//profile-->
             {% if is_granted('ROLE_USER') %}
-            <a class="btn btn-cta-primary pull-right" href={{ path('addPost') }}><i
-                        class="glyphicon glyphicon-edit"></i> Ajouter un post</a>
-                <a class="btn btn-cta-primary pull-right" href={{ path('logout') }} ><i
+                <a class="btn btn-cta-primary pull-right" href={{ path('addPost') }}><i
+                            class="glyphicon glyphicon-edit"></i> Ajouter un post</a>
+                <a class="btn btn-cta-primary pull-right" href={{ path('logout') }}><i
                             class="glyphicon glyphicon-exclamation-sign"></i> Logout</a>
+                <a class="btn btn-cta-primary pull-right" href={{ path('moderation') }}><i
+                            class="glyphicon glyphicon-exclamation-sign"></i> Moderattion</a>
             {% endif %}
             {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
-            <a class="btn btn-cta-primary pull-right" href={{ path('login') }} ><i
-                        class="glyphicon glyphicon-exclamation-sign"></i> Admin</a>
-            <a class="btn btn-cta-primary pull-right" href={{ path('contact') }}><i
-                        class="fa fa-paper-plane"></i> Contact Me</a>
-            <a class="btn btn-cta-primary pull-right" href={{ path('posts') }} ><i
-                        class="glyphicon glyphicon-user"></i> Blog</a>
+                <a class="btn btn-cta-primary pull-right" href={{ path('login') }}><i
+                            class="glyphicon glyphicon-exclamation-sign"></i> Admin</a>
+                <a class="btn btn-cta-primary pull-right" href={{ path('contact') }}><i
+                            class="fa fa-paper-plane"></i> Contact Me</a>
+                <a class="btn btn-cta-primary pull-right" href={{ path('posts') }}><i
+                            class="glyphicon glyphicon-user"></i> Blog</a>
 
-            <a class="btn btn-cta-primary pull-right" href={{ path('index') }} ><i
-                        class="glyphicon glyphicon-home"></i> Accueil</a>
+                <a class="btn btn-cta-primary pull-right" href={{ path('index') }}><i
+                            class="glyphicon glyphicon-home"></i> Accueil</a>
             {% endif %}
         </div><!--//container-->
     </header><!--//header-->
@@ -545,7 +548,7 @@
     </div><!--//masonry-->
 {% endblock %}
 {% block footer %}
-          <!-- ******FOOTER****** -->
+    <!-- ******FOOTER****** -->
     <footer class="footer">
         <div class="container text-center">
             <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->

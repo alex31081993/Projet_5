@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\AddPost;
+use App\Entity\Post;
 use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class AddPostController extends Controller
+class PostController extends Controller
 {
     /**
      * @Route("/addPost", name="addPost")
@@ -19,7 +19,7 @@ class AddPostController extends Controller
      */
     public function index(Request $request, EntityManagerInterface $em)
     {
-        $post = new AddPost();
+        $post = new Post();
 
         $form = $this->createForm(PostType::class, $post);
 
