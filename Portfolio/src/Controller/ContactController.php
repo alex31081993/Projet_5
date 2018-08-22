@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Form\CommentType;
+use App\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use ReCaptcha\ReCaptcha;
 
@@ -18,22 +18,14 @@ class ContactController extends Controller
      * @Route("/contact", name="contact")
      * @param Request $request
      * @param EntityManagerInterface $em
-     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(Request $request, EntityManagerInterface $em)
     {
         $recaptcha = new ReCaptcha('6LdJ12AUAAAAAMfBSWY7TG6Oh0ByZSvfO8fkdWSe');
         $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
-        $contact = new contact();
 
-        $form = $this->createFormBuilder($contact)
-            ->add('nom', TextType::class)
-            ->add('email', TextType::class)
-            ->add('sujet', TextType::class)
-            ->add('contenue', TextareaType::class)
-            ->getForm();
-
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
 
