@@ -32,6 +32,11 @@ class Comment
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $report;
+
     public function getId()
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Comment
     public function setCategory(?Post $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getReport(): ?int
+    {
+        return $this->report;
+    }
+
+    public function setReport(?int $report): self
+    {
+        $this->report = $report;
 
         return $this;
     }
