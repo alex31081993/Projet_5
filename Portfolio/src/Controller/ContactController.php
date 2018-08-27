@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Contact;
-use App\Form\CommentType;
 use App\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,9 +16,10 @@ class ContactController extends Controller
      * @Route("/contact", name="contact")
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param \Swift_Mailer $mailer
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(Request $request, EntityManagerInterface $em)
+    public function index(Request $request, EntityManagerInterface $em, \Swift_Mailer $mailer)
     {
         $recaptcha = new ReCaptcha('6LdJ12AUAAAAAMfBSWY7TG6Oh0ByZSvfO8fkdWSe');
         $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
@@ -29,16 +28,36 @@ class ContactController extends Controller
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid() &&!$resp->isSuccess()) {
-            // Do something if the submit wasn't valid ! Use the message to show something
-            $this->addFlash( 'notice','Valider le captcha pour envoyée votre message.' );
-        }elseif($form->isSubmitted() && $form->isValid() &&$resp->isSuccess()){
+        if ($form->isSubmitted() && $form->isValid() && !$resp->isSuccess()) {
+            $this->addFlash('notice', 'Valider le captcha pour envoyée votre message.');
+        } elseif ($form->isSubmitted() && $form->isValid() && $resp->isSuccess()) {
             $contact = $form->getData();
-
             $em->persist($contact);
             $em->flush();
-            $this->addFlash(  'notice',
+            $this->addFlash('notice',
                 'message envoyée!');
+
+            $message = (new \Swift_Message ($contact->getSujet()))
+                ->setFrom($contact->getEmail())
+                ->setTo('alexis.gressier62@gmail.com')
+                ->setBody(
+                    '<html>' .
+                    ' <body>' .
+                    '<P>'.
+                    'Nom :'.
+                    $contact->getNom() .
+                    '</P>' .
+                    '<p>' .
+                    'Email :' .
+                    $contact->getEmail() .
+                    '</p>' .
+                    '  Contenue du message :' .
+                    $contact->getContenue() .
+                    ' </body>' .
+                    '</html>',
+                    'text/html'
+                );
+            $mailer->send($message);
 
         }
 
