@@ -29,13 +29,13 @@ class ContactController extends Controller
 
 
         if ($form->isSubmitted() && $form->isValid() && !$resp->isSuccess()) {
-            $this->addFlash('notice', 'Valider le captcha pour envoyée votre message.');
+            $this->addFlash('notice', 'Valider le captcha pour envoyer votre message.');
         } elseif ($form->isSubmitted() && $form->isValid() && $resp->isSuccess()) {
             $contact = $form->getData();
             $em->persist($contact);
             $em->flush();
             $this->addFlash('notice',
-                'message envoyée!');
+                'message envoyé!');
 
             $message = (new \Swift_Message ($contact->getSujet()))
                 ->setFrom($contact->getEmail())
@@ -51,7 +51,7 @@ class ContactController extends Controller
                     'Email :' .
                     $contact->getEmail() .
                     '</p>' .
-                    '  Contenue du message :' .
+                    '  Contenu du message :' .
                     $contact->getContenue() .
                     ' </body>' .
                     '</html>',

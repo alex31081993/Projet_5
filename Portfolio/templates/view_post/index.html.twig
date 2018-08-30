@@ -8,12 +8,11 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="well well-sm">
-
                         <h2 class="post-title">
-                            <li>{{ post.titre }}</li>
+                            <p>{{ post.titre }}</p>
                         </h2>
                         <h3 class="post-subtitle">
-                            <li>{{ post.chapo }}</li>
+                            <p>{{ post.chapo }}</p>
                         </h3>
                     <hr>
                 </div>
@@ -25,14 +24,14 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="well well-sm">
                     {% for comment in comments %}
-                    <h2 class="post-title">
-                        <li>{{ comment.nom }}</li>
-                    </h2>
-                    <h3 class="post-subtitle">
-                        <li>{{ comment.content }}</li>
+                    <h3 class="post-title">
+                        <p>{{ comment.nom }}</p>
                     </h3>
+                    <h4 class="post-subtitle">
+                        <p>{{ comment.content }}</p>
+                    </h4>
+                        <hr>
                     {% endfor %}
-                    <hr>
                 </div>
             </div>
         </div>
@@ -41,14 +40,19 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="well well-sm">
-                    <h1>Comment</h1>
-
+                    <h2>Commentaires</h2>
+                    {% for message in app.flashes('notice') %}
+                        <div class="flash-notice">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
                     <div class="g-recaptcha" data-sitekey="6LdJ12AUAAAAAEmHjRFknr1eKQaMIe5jXHlBQsGH"></div>
 
                     <input type="submit" class="btn btn-cta-primary" />
                     {{ form_end(form) }}
+                    <hr>
                 </div>
             </div>
         </div>

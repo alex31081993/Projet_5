@@ -7,6 +7,12 @@
  * Website: http://themes.3rdwavemedia.com/
 */
 /* ======= Base ======= */
+li{
+    text-decoration: none;
+}
+.form-control{
+  max-width: 300px;
+}
 a {
   margin-right: 10px;
 }
@@ -15,6 +21,7 @@ a {
 }
 .container {
   padding-top: 20px;
+    text-decoration: none;
 }
 
 body {
@@ -37,6 +44,7 @@ h6 {
 }
 a {
   color: #3AAA64;
+    text-decoration: none;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
