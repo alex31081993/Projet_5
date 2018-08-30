@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="well well-sm">
+                    <h1>Modération des commentaires</h1>
+                    {% for comment in comments %}
+                        <a class="btn btn-cta-primary pull-right" href={{ path('remove', {'id' : comment.id} ) }}>suprimer</a>
+                        <a class="btn btn-cta-primary pull-right" href={{ path('validate', {'id' : comment.id} ) }}>valider</a>
+                        <h2 class="post-title">
+                            <p>{{ comment.nom }}</p>
+                        </h2>
+                        <p>{{ comment.content }}</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
