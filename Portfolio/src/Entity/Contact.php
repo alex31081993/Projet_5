@@ -39,6 +39,12 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le sujet doit contenir au moin {{ limit }} caractéres",
+     *      maxMessage = "Le sujet peut contenir au max {{ limit }} caractéres"
+     * )
      */
     private $sujet;
 
@@ -47,8 +53,8 @@ class Contact
      * @Assert\Length(
      *      min = 2,
      *      max = 255,
-     *      minMessage = "Le sujet doit contenir au moin {{ limit }} caractéres",
-     *      maxMessage = "Le sujet peut contenir au max {{ limit }} caractéres"
+     *      minMessage = "Le contenue doit contenir au moin {{ limit }} caractéres",
+     *      maxMessage = "Le contenue peut contenir au max {{ limit }} caractéres"
      * )
      */
     private $contenue;
