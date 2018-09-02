@@ -16,7 +16,14 @@
                                         <p>{{ article.chapo }}</p>
                                     </h3>
                                 </a>
-                                <p class="post-meta">Posté par <a href={{ path('index') }}>Alexis Gressier</a></p>
+                                <p class="post-meta">
+                                    Posté par <a href={{ path('index') }}>Alexis Gressier</a>
+                                {% if is_granted('ROLE_USER') %}
+                                    <a class="btn btn-cta-primary pull-right" href={{ path('removePost', {'id' : article.id} ) }}>suprimer</a>
+                                    <a class="btn btn-cta-primary pull-right" href={{ path('updatePost', {'id' : article.id} ) }}>modifier</a>
+
+                                </p>
+                                {% endif %}
                                 <hr>
                             </div>
                         </div>

@@ -12,6 +12,11 @@
                 <div class="well well-sm">
                     <h1>Conexion Administrateur</h1>
                     <!-- Start form -->
+                    {% for message in app.flashes('notice') %}
+                        <div class="flash-notice">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                     <form action="{{ path('login') }}" method="post">
                         <div class="form-group">
                             <label for="username">Username</label>
