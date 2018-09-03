@@ -18,6 +18,15 @@ class FrontendController extends Controller
             'controller_name' => 'FrontendController',
         ]);
     }
+    /**
+     * @Route("/mentions-legales", name="mentionsLegales")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function mentionsLegales()
+    {
+        return $this->render('mentions_legales/index.html.twig', [
+            'controller_name' => 'FrontendController',
 
-
+        ]);
+    }
 }
