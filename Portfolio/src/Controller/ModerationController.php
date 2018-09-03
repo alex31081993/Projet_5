@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -10,11 +11,12 @@ class ModerationController extends Controller
 {
     /**
      * @Route("/moderation", name="moderation")
+     * @param EntityManagerInterface $entityManager
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index()
+    public function index(EntityManagerInterface $entityManager)
     {
-        $repository = $this->getDoctrine()
-            ->getManager()
+        $repository = $entityManager
             ->getRepository(Comment::class);
         $comments = $repository->findBy([
             'report' => null,
@@ -28,16 +30,15 @@ class ModerationController extends Controller
     /**
      * @Route("/moderation/remove/{id}", name="remove")
      * @param $id
+     * @param EntityManagerInterface $entityManager
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function remove($id)
+    public function remove($id, EntityManagerInterface $entityManager)
     {
-        $entityManager = $this->getDoctrine()->getManager();
         $comment = $entityManager->getRepository(Comment::class)->find($id);
 
         $entityManager->remove($comment);
         $entityManager->flush();
-
 
         return $this->redirectToRoute('moderation');
     }
@@ -45,11 +46,11 @@ class ModerationController extends Controller
     /**
      * @Route("/moderation/validate/{id}", name="validate")
      * @param $id
+     * @param EntityManagerInterface $entityManager
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function validate($id)
+    public function validate($id, EntityManagerInterface $entityManager)
     {
-        $entityManager = $this->getDoctrine()->getManager();
         $comment = $entityManager->getRepository(Comment::class)->find($id);
 
         $comment->setReport(1);
