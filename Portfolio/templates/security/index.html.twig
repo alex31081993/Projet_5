@@ -1,7 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block javascriptHead %}
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-{% endblock %}
 {% block body %}
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -9,14 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="well well-sm">
+                <div class="well well-sm item featured text-center">
                     <h1>Conexion Administrateur</h1>
                     <!-- Start form -->
-                    {% for message in app.flashes('notice') %}
-                        <div class="flash-notice">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
                     <form action="{{ path('login') }}" method="post">
                         <div class="form-group">
                             <label for="username">Username</label>
@@ -28,7 +20,6 @@
                             <input type="password" class="form-control" name="_password" id="password"
                                    placeholder="Password">
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6LdJ12AUAAAAAEmHjRFknr1eKQaMIe5jXHlBQsGH"></div>
                         <div class="form-check">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

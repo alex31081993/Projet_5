@@ -6,14 +6,18 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="well well-sm">
-                        <h2 class="post-title">
+                        <h1 class="post-title item featured text-center">
                             <p>{{ post.titre }}</p>
-                        </h2>
-                        <h3 class="post-subtitle">
+                        </h1>
+                        <h3 class="post-subtitle item featured text-center">
                             <p>{{ post.chapo }}</p>
                         </h3>
+                    <hr>
+                    {% autoescape %}
+                    <p>{{ post.content|raw }}</p>
+                    {% endautoescape %}
                     <hr>
                 </div>
             </div>
@@ -22,14 +26,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="well well-sm">
+                <div class="well well-sm ">
+                    <h2 class="item featured text-center">Commentaires</h2>
+                    <hr>
                     {% for comment in comments %}
                     <h3 class="post-title">
-                        <p>{{ comment.nom }}</p>
+                        <p>Nom : {{ comment.nom }}</p>
                     </h3>
-                    <h4 class="post-subtitle">
-                        <p>{{ comment.content }}</p>
-                    </h4>
+                        <p>Message : {{ comment.content }}</p>
+
                         <hr>
                     {% endfor %}
                 </div>
@@ -40,18 +45,20 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="well well-sm">
-                    <h2>Commentaires</h2>
-                    {% for message in app.flashes('notice') %}
-                        <div class="flash-notice">
+                    <h3 class="title item featured text-center">Poster un Commentaire</h3>
+                    {% for message in app.flashes('notice5') %}
+                        <div class="flash-notice item featured text-center">
                             {{ message }}
                         </div>
                     {% endfor %}
+                    <div class="item featured text-center">
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
-                    <div class="g-recaptcha" data-sitekey="6LdJ12AUAAAAAEmHjRFknr1eKQaMIe5jXHlBQsGH"></div>
+                    <div class="g-recaptcha item featured text-center" data-sitekey="6LdJ12AUAAAAAEmHjRFknr1eKQaMIe5jXHlBQsGH"></div>
 
                     <input type="submit" class="btn btn-cta-primary" />
                     {{ form_end(form) }}
+                    </div>
                     <hr>
                 </div>
             </div>
