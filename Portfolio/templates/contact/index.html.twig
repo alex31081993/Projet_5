@@ -7,19 +7,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="well well-sm">
+                <div class="well well-sm item featured text-center">
                     <h1>Contact</h1>
-                    {% for message in app.flashes('notice') %}
+                    {% for message in app.flashes('notice1') %}
                         <div class="flash-notice">
                             {{ message }}
                         </div>
                     {% endfor %}
-
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
                     <div class="g-recaptcha" data-sitekey="6LdJ12AUAAAAAEmHjRFknr1eKQaMIe5jXHlBQsGH"></div>
-
-                    <input type="submit" class="btn btn-cta-primary" />
+                    <input type="submit" class="btn btn-cta-primary"/>
                     {{ form_end(form) }}
                 </div>
             </div>

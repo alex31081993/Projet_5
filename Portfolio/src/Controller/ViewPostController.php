@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\AddPost;
+use App\Entity\Post;
 use App\Entity\Comment;
 use App\Form\CommentType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Handler\Form\CommentFormHandler;
+use ReCaptcha\ReCaptcha;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,30 +18,26 @@ class ViewPostController extends Controller
      * @Route("/post/{id}", name="post")
      * @param Request $request
      * @param $id
-     * @param EntityManagerInterface $em
+     * @param CommentFormHandler $commentFormHandler
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showPost(Request $request, $id, EntityManagerInterface $em)
+    public function showPost(Request $request, $id, CommentFormHandler $commentFormHandler)
     {
+        $recaptcha = new ReCaptcha($this->getParameter('secret'));
+        $resp = $recaptcha->verify($request->request->get('g-recaptcha-response'), $request->getClientIp());
         $post = $this->getDoctrine()
-            ->getRepository(AddPost::class)
+            ->getRepository(Post::class)
             ->find($id);
-
 
         $comments = $post->getComments();
 
-
         $form = $this->createForm(CommentType::class, new Comment());
-
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment = $form->getData();
-            $comment->setCategory($post);
-            $em->persist($comment);
-            $em->flush();
-
+        if (!$commentFormHandler->handle($form, $resp, $post)) {
+            $this->addFlash('notice', 'Valider le captcha pour envoyer votre message.');
         }
+
         return $this->render('view_post/index.html.twig', array(
             'form' => $form->createView(),
             'post' => $post,

@@ -7,6 +7,10 @@
  * Website: http://themes.3rdwavemedia.com/
 */
 /* ======= Base ======= */
+li{
+    text-decoration: none;
+}
+
 a {
   margin-right: 10px;
 }
@@ -15,6 +19,7 @@ a {
 }
 .container {
   padding-top: 20px;
+    text-decoration: none;
 }
 
 body {
@@ -37,6 +42,7 @@ h6 {
 }
 a {
   color: #3AAA64;
+    text-decoration: none;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
@@ -249,7 +255,7 @@ iframe {
 }
 .latest .featured-image .ribbon {
   position: absolute;
-  top: -4px;
+  top: 20px;
   right: -4px;
   width: 110px;
   height: 110px;
@@ -524,7 +530,7 @@ iframe {
   color: #fb866a;
 }
 /* Extra small devices (phones, less than 768px) */
-@media (max-width: 767px) {
+@media (max-width: 1400px) {
   .header {
     text-align: center;
   }

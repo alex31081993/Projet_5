@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -18,19 +20,36 @@ class Comment
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Vôtre nom doit contenenir au moin {{ limit }} caractéres",
+     *      maxMessage = "vôtre nom doit contenenir au max {{ limit }} caractéres"
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Le contenue doit contenir au moin {{ limit }} caractéres",
+     *      maxMessage = "Le contenue peut contenir au max {{ limit }} caractéres"
+     * )
      */
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\AddPost", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $report;
 
     public function getId()
     {
@@ -61,14 +80,26 @@ class Comment
         return $this;
     }
 
-    public function getCategory(): ?AddPost
+    public function getCategory(): ?Post
     {
         return $this->category;
     }
 
-    public function setCategory(?AddPost $category): self
+    public function setCategory(?Post $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getReport(): ?int
+    {
+        return $this->report;
+    }
+
+    public function setReport(?int $report): self
+    {
+        $this->report = $report;
 
         return $this;
     }

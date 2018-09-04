@@ -2,8 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\AddPost;
+use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,14 +15,13 @@ class PostType extends AbstractType
         $builder
             ->add('titre')
             ->add('chapo')
-            ->add('content')
-        ;
+            ->add('content', TextareaType::class, array('attr' => array('class' => 'ckeditor')));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => AddPost::class,
+            'data_class' => Post::class,
         ]);
     }
 }

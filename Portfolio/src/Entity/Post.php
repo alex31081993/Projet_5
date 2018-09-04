@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AddPostRepository")
  */
-class AddPost
+class Post
 {
     /**
      * @ORM\Id()
@@ -34,7 +34,7 @@ class AddPost
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="category", cascade={"remove"})
      */
     private $comments;
 

@@ -40,3 +40,5 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/addPost, roles: ROLE_USER }
+        - { path: ^/moderation, roles: ROLE_USER }
+        - { path: ^/posts/update, roles: ROLE_USER }
