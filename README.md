@@ -31,11 +31,11 @@ Ajouter un Post : La page permettra d'ajouter un post pour le blog en y mettant 
 Modération de commentaires : Les commentaires signalés par les utilisateurs seront envoyés dans cet interface afin d'y être modérés, il sera possible des les supprimer, les modifier ou de les valider.
 
 # Liste des compétence à utiliser:
-Découper, assembler et programmer les pages
-Intégrer les contenus et les effets graphiques
-Organiser et manipuler les données
-Organiser le code en langage PHP
-Sécuriser l'application
-Stocker et récupérer les informations dans la base de données en langage SQL
-Utiliser les langages de développement web dans un projet personnel
-Assurer la conformité de votre application avec les langages PHP, JavaScript, HTML5 et CSS
+* Découper, assembler et programmer les pages
+* Intégrer les contenus et les effets graphiques
+* Organiser et manipuler les données
+* Organiser le code en langage PHP
+* Sécuriser l'application
+* Stocker et récupérer les informations dans la base de données en langage SQL
+* Utiliser les langages de développement web dans un projet personnel
+* Assurer la conformité de votre application avec les langages PHP, JavaScript, HTML5 et CSS
