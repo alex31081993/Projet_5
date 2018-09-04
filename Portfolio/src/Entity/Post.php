@@ -34,7 +34,7 @@ class Post
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="category", cascade={"remove"})
      */
     private $comments;
 
